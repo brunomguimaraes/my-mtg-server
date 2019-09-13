@@ -1,21 +1,27 @@
 export default {
 	Query: {
-		users: (parent, args, { models }) => {
-			return Object.values(models.users);
+		users: async (parent, args, { models }) => {
+			return await models.User.findAll();
 		},
-		user: (parent, { id }, { models }) => {
-			return models.users[id];
+		user: async (parent, { id }, { models }) => {
+			return await models.User.findByPk(id);
 		},
-		me: (parent, args, { me }) => {
-			return me;
+		me: async (parent, args, { models, me }) => {
+			if (!me) {
+				return null;
+			}
+			return await models.User.findByPk(me.id);
 		},
 	},
 
+
 	User: {
-		creditCardInfo: (user, args, { models }) => {
-			return Object.values(models.creditCardInfos).filter(
-				creditCardInfo => creditCardInfo.userId === user.id,
-			);
+		creditCardInfo: async (user, args, { models }) => {
+			return await models.PaymentInfo.findAll({
+				where: {
+					userId: user.id,
+				},
+			});
 		},
 	},
 };

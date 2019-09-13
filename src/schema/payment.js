@@ -9,8 +9,16 @@ export default gql`
   type PaymentInfo {
     id: ID!
     user: User!
-	  cardNumber: Int!
+		cardNumber: Int!
   	cvv: Int!
   	isValid: Boolean!
+  }
+    extend type Mutation {
+    createCreditCard(
+      cardNumber: Int!
+      cvv: Int!
+      isValid: Boolean!
+    ): PaymentInfo!
+    deleteCreditCard(id: ID!): Boolean!
   }
 `;
