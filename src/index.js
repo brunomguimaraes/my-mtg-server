@@ -1,12 +1,11 @@
 import 'dotenv/config';
 import cors from 'cors';
-import uuidv4 from 'uuid/v4';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 
 import schema from './schema';
 import resolvers from './resolvers';
-import models from './models';
+import models, { sequelize } from './models';
 
 const app = express();
 
@@ -15,14 +14,63 @@ app.use(cors());
 const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
-  context: {
-    models,
-    me: models.users[1],
+  formatError: error => {
+    // remove the internal sequelize error message
+    // leave only the important validation error
+    const message = error.message
+      .replace('SequelizeValidationError: ', '')
+      .replace('Validation error: ', '');
+    return {
+      ...error,
+      message,
+    };
   },
+  context: async () => ({
+    models,
+    me: await models.User.findByLogin('johndoe'),
+  }),
 });
 
 server.applyMiddleware({ app, path: '/graphql' });
 
-app.listen({ port: 8000 }, () => {
-  console.log('Apollo Server on http://localhost:8000/graphql');
+const eraseDatabaseOnSync = true;
+
+sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
+  if (eraseDatabaseOnSync) {
+    createUsersWithCreditCardInfo();
+  }
+  app.listen({ port: 8000 }, () => {
+    console.log('Apollo Server on http://localhost:8000/graphql');
+  });
 });
+
+const createUsersWithCreditCardInfo = async () => {
+  await models.User.create(
+    {
+      name: 'John Doe',
+      // paymentInfos: [{
+      //   cardNumber: 29103290,
+      //   cvv: 123,
+      //   isValid: true
+      // }, {
+      //   cardNumber: 47389201,
+      //   cvv: 321,
+      //   isValid: false
+      // }]
+    },
+    {
+      include: [models.PaymentInfo],
+    },
+  );
+};
+
+// const createProducts = async () => {
+//   await models.Product.create(
+//     {
+//       products: [{}]    
+//     },
+//     {
+//       include: [models.Product],
+//     },
+//   );
+// };

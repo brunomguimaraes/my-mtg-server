@@ -1,18 +1,30 @@
-import uuidv4 from 'uuid/v4';
-
 export default {
     Query: {
-        creditCardInfos: (parent, args, { models }) => {
-            return Object.values(models.creditCardInfos);
+        creditCardInfos: async (parent, args, { models }) => {
+            return await models.PaymentInfo.findAll();
         },
-        creditCardInfo: (parent, { id }, { models }) => {
-            return models.creditCardInfos[id];
+        creditCardInfo: async (parent, { id }, { models }) => {
+            return await models.PaymentInfo.findByPk(id);
         },
     },
-
+    Mutation: {
+        createCreditCard: async (parent, { me, models }) => {
+            try {
+                return await models.PaymentInfo.create({
+                    paymentInfos,
+                    userId: me.id,
+                });
+            } catch (error) {
+                throw new Error(error);
+            }
+        },
+        deleteCreditCard: async (parent, { id }, { models }) => {
+            return await models.PaymentInfo.destroy({ where: { id } });
+        },
+    },
     PaymentInfo: {
-        user: (paymentInfo, args, { models }) => {
-            return models.users[paymentInfo.userId];
+        user: async (creditCardInfo, args, { models }) => {
+            return await models.User.findByPk(creditCardInfo.userId);
         },
     },
 };

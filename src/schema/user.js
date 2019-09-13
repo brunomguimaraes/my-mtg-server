@@ -6,6 +6,7 @@ export default gql`
     user(id: ID!): User
     me: User
   }
+
   type User {
     creditCardInfo: [PaymentInfo!]!
     id: ID!
