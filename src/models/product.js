@@ -1,4 +1,4 @@
-const paymentInfo = (sequelize, DataTypes) => {
+const product = (sequelize, DataTypes) => {
 	const Product = sequelize.define('product', {
 		imgUrl: {
 			type: DataTypes.STRING,
