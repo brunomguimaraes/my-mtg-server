@@ -13,7 +13,8 @@ export default gql`
   	cvv: Int!
   	isValid: Boolean!
   }
-    extend type Mutation {
+
+   extend type Mutation {
     createCreditCard(
       cardNumber: Int!
       cvv: Int!
@@ -22,3 +23,4 @@ export default gql`
     deleteCreditCard(id: ID!): Boolean!
   }
 `;
+
