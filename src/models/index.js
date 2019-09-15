@@ -12,6 +12,7 @@ const models = {
 	PaymentInfo: sequelize.import('./payment'),
 	Product: sequelize.import('./product'),
 	CartProduct: sequelize.import('./cartProduct'),
+	ShoppingCart: sequelize.import('./shoppingCart'),
 };
 Object.keys(models).forEach(key => {
 	if ('associate' in models[key]) {

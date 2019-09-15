@@ -4,6 +4,7 @@ import userSchema from './user';
 import paymentSchema from './payment';
 import productSchema from './product';
 import cartProductSchema from './cartProduct';
+import shoppingCartSchema from './shoppingCart';
 
 const linkSchema = gql`
   type Query {
@@ -17,4 +18,4 @@ const linkSchema = gql`
   }
 `;
 
-export default [linkSchema, userSchema, paymentSchema, productSchema, cartProductSchema];
+export default [linkSchema, userSchema, paymentSchema, productSchema, cartProductSchema, shoppingCartSchema];
