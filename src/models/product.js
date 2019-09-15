@@ -25,7 +25,9 @@ const product = (sequelize, DataTypes) => {
 			type: DataTypes.TEXT,
 		},
 	});
-
+	Product.associate = models => {
+		Product.hasOne(models.CartProduct, { onDelete: 'CASCADE' });
+	};
 	return Product;
 };
 export default product;
