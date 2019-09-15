@@ -1,7 +1,7 @@
 const paymentInfo = (sequelize, DataTypes) => {
     const PaymentInfo = sequelize.define('paymentInfo', {
         cardNumber: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.BIGINT,
             validate: {
                 notEmpty: {
                     args: true,
