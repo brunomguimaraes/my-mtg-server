@@ -8,8 +8,9 @@ export default {
         },
     },
     Mutation: {
-        createCreditCard: async (parent, { me, models }) => {
+        createCreditCard: async (parent, args, { me, models }) => {
             try {
+                const paymentInfos = { ...args };
                 return await models.PaymentInfo.create({
                     paymentInfos,
                     userId: me.id,

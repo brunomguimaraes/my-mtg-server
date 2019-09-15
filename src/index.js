@@ -37,7 +37,7 @@ const eraseDatabaseOnSync = true;
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
   if (eraseDatabaseOnSync) {
-    createUsersWithCreditCardInfo();
+    createUsersWithCreditCardInfo()
   }
   app.listen({ port: 8000 }, () => {
     console.log('Apollo Server on http://localhost:8000/graphql');
@@ -48,29 +48,18 @@ const createUsersWithCreditCardInfo = async () => {
   await models.User.create(
     {
       name: 'John Doe',
-      // paymentInfos: [{
-      //   cardNumber: 29103290,
-      //   cvv: 123,
-      //   isValid: true
-      // }, {
-      //   cardNumber: 47389201,
-      //   cvv: 321,
-      //   isValid: false
-      // }]
+      paymentInfos: [{
+        cardNumber: 291032901234,
+        cvv: 123,
+        isValid: true
+      }, {
+        cardNumber: 473892019999,
+        cvv: 321,
+        isValid: false
+      }]
     },
     {
       include: [models.PaymentInfo],
     },
   );
 };
-
-// const createProducts = async () => {
-//   await models.Product.create(
-//     {
-//       products: [{}]    
-//     },
-//     {
-//       include: [models.Product],
-//     },
-//   );
-// };
