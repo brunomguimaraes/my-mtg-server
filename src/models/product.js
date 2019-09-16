@@ -24,6 +24,11 @@ const product = (sequelize, DataTypes) => {
 		description: {
 			type: DataTypes.TEXT,
 		},
+		cardColor: {
+			type: DataTypes.ENUM({
+				values: ['Black', 'White', 'Blue', 'Red', 'Green', 'Gold', 'Colorless']
+			})
+		},
 	});
 	Product.associate = models => {
 		Product.hasOne(models.CartProduct, { onDelete: 'CASCADE' });

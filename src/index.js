@@ -33,10 +33,10 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app, path: '/graphql' });
 
-const eraseDatabaseOnSync = true;
+const eraseDatabaseOnSync = false;
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
-  // createUsersWithCreditCardInfo()
+  createUsersWithCreditCardInfo()
   app.listen({ port: 8000 }, () => {
     console.log('Apollo Server on http://localhost:8000/graphql');
   });
@@ -52,7 +52,6 @@ const createUsersWithCreditCardInfo = async () => {
         isValid: true
       }, {
         cardNumber: 473892019999,
-        cvv: 321,
         isValid: false
       }]
     },

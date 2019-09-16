@@ -30,5 +30,12 @@ export default {
 				},
 			});
 		},
+		shoppingCart: async (user, args, { models }) => {
+			return await models.ShoppingCart.findOne({
+				where: {
+					userId: user.id,
+				},
+			});
+		},
 	},
 };

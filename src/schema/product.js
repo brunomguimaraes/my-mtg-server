@@ -14,6 +14,17 @@ type Product {
   quantityInStock: Int 
   cardType: String
   description: String
+  cardColor: Colors
+}
+
+enum Colors {
+  Blue
+  Black
+  Colorless
+  White
+  Green
+  Red
+  Gold
 }
 
 extend type Mutation {
@@ -24,6 +35,7 @@ extend type Mutation {
 		quantityInStock: Int 
 		cardType: String
 		description: String
+    cardColor: Colors
   ): Product!
   deleteProduct(id: ID!): Boolean!
 }
