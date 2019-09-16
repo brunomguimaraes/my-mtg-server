@@ -11,5 +11,7 @@ export default gql`
     creditCardInfo: [PaymentInfo!]!
     id: ID!
     name: String!
+    order: [Order]
+    shoppingCart: ShoppingCart
   }
 `;

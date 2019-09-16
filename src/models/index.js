@@ -14,6 +14,7 @@ const models = {
 	CartProduct: sequelize.import('./cartProduct'),
 	ShoppingCart: sequelize.import('./shoppingCart'),
 	Order: sequelize.import('./order'),
+	OrderedProduct: sequelize.import('./orderedProduct'),
 };
 Object.keys(models).forEach(key => {
 	if ('associate' in models[key]) {

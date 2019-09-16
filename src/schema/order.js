@@ -12,6 +12,7 @@ type Order {
 	user: User
 	isPaid: Boolean
 	totalOrderValue: Float
+	productsOrdered: [OrderedProduct]
 }
 
 type OrderInput {
@@ -25,6 +26,7 @@ extend type Mutation {
   	userId: ID
 		totalOrderValue: Float
 		isPaid: Boolean
+		orderedProductIds: [ID]
   ): OrderInput
   deleteOrder(id: ID!): Boolean!
 }
