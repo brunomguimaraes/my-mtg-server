@@ -23,5 +23,12 @@ export default {
 				},
 			});
 		},
+		Order: async (user, args, { models }) => {
+			return await models.Order.findAll({
+				where: {
+					userId: user.id,
+				},
+			});
+		},
 	},
 };

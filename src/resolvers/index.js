@@ -3,5 +3,6 @@ import paymentResolvers from '../resolvers/payment';
 import productResolvers from '../resolvers/product';
 import cartProductResolvers from '../resolvers/cartProduct';
 import shoppingCartResolvers from '../resolvers/shoppingCart';
+import orderResolvers from '../resolvers/order';
 
-export default [userResolvers, paymentResolvers, productResolvers, cartProductResolvers, shoppingCartResolvers];
+export default [userResolvers, paymentResolvers, productResolvers, cartProductResolvers, shoppingCartResolvers, orderResolvers];
