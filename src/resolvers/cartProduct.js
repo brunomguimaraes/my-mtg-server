@@ -25,7 +25,7 @@ export default {
 	},
 	CartProduct: {
 		product: async (cartProduct, args, { models }) => {
-			return await models.Product.findAll({
+			return await models.Product.findOne({
 				where: {
 					id: cartProduct.productId,
 				},
