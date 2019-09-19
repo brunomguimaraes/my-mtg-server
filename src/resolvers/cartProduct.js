@@ -9,9 +9,8 @@ export default {
 	},
 	Mutation: {
 		createCartProduct: async (parent, args, { models }) => {
-			console.log("args:", args)
 			try {
-				const cartProduct = { ...args };
+				const cartProduct = { ...args.input };
 				return await models.CartProduct.create(
 					cartProduct
 				);
@@ -30,6 +29,9 @@ export default {
 					id: cartProduct.productId,
 				},
 			});
+		},
+		shoppingCart: async (cartProduct, args, { models }) => {
+			return await models.ShoppingCart.findByPk(cartProduct.shoppingCartId);
 		},
 	},
 };

@@ -1,5 +1,10 @@
 const product = (sequelize, DataTypes) => {
 	const Product = sequelize.define('product', {
+		id: {
+			type: DataTypes.UUID,
+			defaultValue: DataTypes.UUIDV1,
+			primaryKey: true
+		},
 		imgUrl: {
 			type: DataTypes.STRING,
 		},

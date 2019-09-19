@@ -28,7 +28,11 @@ export default {
             return await models.User.findByPk(shoppingCart.userId);
         },
         cartProducts: async (shoppingCart, args, { models }) => {
-            return await models.CartProduct.findByPk(shoppingCart.cartProductIds);
+            return await models.CartProduct.findAll({
+                where: {
+                    shoppingCartId: shoppingCart.id,
+                },
+            });
         },
     },
 };

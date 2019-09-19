@@ -36,7 +36,9 @@ server.applyMiddleware({ app, path: '/graphql' });
 const eraseDatabaseOnSync = false;
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
-  createUsersWithCreditCardInfo()
+  if (eraseDatabaseOnSync) {
+    createUsersWithCreditCardInfo()
+  }
   app.listen({ port: 8000 }, () => {
     console.log('Apollo Server on http://localhost:8000/graphql');
   });

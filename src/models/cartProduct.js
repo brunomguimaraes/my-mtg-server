@@ -4,6 +4,9 @@ const cartProduct = (sequelize, DataTypes) => {
 			type: DataTypes.INTEGER,
 		},
 	});
+	CartProduct.associate = models => {
+		CartProduct.belongsTo(models.ShoppingCart);
+	};
 	return CartProduct;
 };
 export default cartProduct;
