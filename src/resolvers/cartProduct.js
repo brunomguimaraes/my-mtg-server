@@ -33,8 +33,9 @@ export default {
 				throw new Error(error);
 			}
 		},
-		deleteCartProduct: async (parent, { id }, { models }) => {
-			return await models.CartProduct.destroy({ where: { id } });
+		deleteCartProduct: async (parent, args, { models }) => {
+			console.log("args.input", args.input)
+			return await models.CartProduct.destroy({ where: { id: args.input.id } });
 		},
 	},
 	CartProduct: {
