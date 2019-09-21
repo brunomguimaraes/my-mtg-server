@@ -16,8 +16,6 @@ const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
   formatError: error => {
-    // remove the internal sequelize error message
-    // leave only the important validation error
     const message = error.message
       .replace('SequelizeValidationError: ', '')
       .replace('Validation error: ', '');
@@ -34,7 +32,7 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app, path: '/graphql' });
 
-const eraseDatabaseOnSync = true;
+const eraseDatabaseOnSync = false;
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
   if (eraseDatabaseOnSync) {

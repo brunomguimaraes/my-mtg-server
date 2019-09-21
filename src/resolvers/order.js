@@ -9,15 +9,26 @@ export default {
 	},
 	Mutation: {
 		createOrder: async (parent, args, { me, models }) => {
-			console.log("RESOLVI O ME?", me)
-			console.log("argsAQUIAQUI:", args)
 			try {
-				const order = { ...args };
 				const orderResult = await models.Order.create(
-					order, { include: [models.OrderedProduct] }
-				);
-				console.log("FUNCIONAPLZ", orderResult.id)
+					{
+						userId: me.id,
+						isPaid: args.input.isPaid,
+						totalOrderValue: args.input.totalOrderValue,
+					}
+				)
+
+				args.input.orderedProduct.map(async product =>
+					await models.OrderedProduct.create({
+						orderId: orderResult.id,
+						name: product.name,
+						price: product.price,
+						quantity: product.quantity
+					})
+				)
+
 				return orderResult
+
 			} catch (error) {
 				throw new Error(error);
 			}

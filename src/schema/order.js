@@ -14,18 +14,14 @@ type Order {
 	orderedProduct: [OrderedProduct]
 }
 
-type CreateOrderInput {
+input CreateOrderInput {
 		totalOrderValue: Float
 		isPaid: Boolean
-		userId: ID
+		orderedProduct: [OrderedProductInput]
 }
 
 extend type Mutation {
-	createOrder(
-		totalOrderValue: Float
-		isPaid: Boolean
-		userId: ID
-		orderedProduct: [OrderedProductInput]
+	createOrder( input: CreateOrderInput
   ): Order
   deleteOrder(id: ID!): Boolean!
 }
