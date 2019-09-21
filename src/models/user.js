@@ -1,5 +1,10 @@
 const user = (sequelize, DataTypes) => {
 	const User = sequelize.define('user', {
+		id: {
+			type: DataTypes.UUID,
+			defaultValue: DataTypes.UUIDV1,
+			primaryKey: true
+		},
 		name: {
 			type: DataTypes.STRING,
 			unique: true,
@@ -14,9 +19,9 @@ const user = (sequelize, DataTypes) => {
 		User.hasMany(models.Order, { onDelete: 'CASCADE' });
 		User.hasOne(models.ShoppingCart, { onDelete: 'CASCADE' });
 	};
-	User.findByLogin = async login => {
+	User.findByName = async name => {
 		let user = await User.findOne({
-			where: { name: login },
+			where: { name: name },
 		});
 		return user;
 	};

@@ -1,5 +1,10 @@
 const paymentInfo = (sequelize, DataTypes) => {
 	const PaymentInfo = sequelize.define('paymentInfo', {
+		id: {
+			type: DataTypes.UUID,
+			defaultValue: DataTypes.UUIDV1,
+			primaryKey: true
+		},
 		cardNumber: {
 			type: DataTypes.BIGINT,
 			validate: {

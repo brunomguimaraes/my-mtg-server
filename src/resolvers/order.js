@@ -8,14 +8,15 @@ export default {
 		},
 	},
 	Mutation: {
-		createOrder: async (parent, args, { models }) => {
+		createOrder: async (parent, args, { me, models }) => {
+			console.log("RESOLVI O ME?", me)
 			console.log("argsAQUIAQUI:", args)
 			try {
 				const order = { ...args };
 				const orderResult = await models.Order.create(
 					order, { include: [models.OrderedProduct] }
 				);
-
+				console.log("FUNCIONAPLZ", orderResult.id)
 				return orderResult
 			} catch (error) {
 				throw new Error(error);

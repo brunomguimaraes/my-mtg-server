@@ -8,10 +8,9 @@ export default {
         },
     },
     Mutation: {
-        createShoppingCart: async (parent, args, { models }) => {
-            console.log("args:", args)
+        createShoppingCart: async (parent, args, { me, models }) => {
             try {
-                const shoppingCart = { ...args };
+                const shoppingCart = { userId: me.id };
                 return await models.ShoppingCart.create(
                     shoppingCart
                 );

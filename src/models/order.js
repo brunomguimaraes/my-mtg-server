@@ -1,5 +1,10 @@
 const order = (sequelize, DataTypes) => {
 	const Order = sequelize.define('order', {
+		id: {
+			type: DataTypes.UUID,
+			defaultValue: DataTypes.UUIDV1,
+			primaryKey: true
+		},
 		totalOrderValue: {
 			type: DataTypes.FLOAT,
 		},
