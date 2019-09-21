@@ -18,6 +18,21 @@ export default {
 				throw new Error(error);
 			}
 		},
+		updateCartProduct: async (parent, args, { models }) => {
+			try {
+				const cartProduct = {
+					...args.input
+				}
+				return await models.CartProduct.findByPk(cartProduct.id).then((cartProductInstance) => {
+					return cartProductInstance.update(cartProduct).then((self) => {
+						return self
+					})
+				})
+			}
+			catch (error) {
+				throw new Error(error);
+			}
+		},
 		deleteCartProduct: async (parent, { id }, { models }) => {
 			return await models.CartProduct.destroy({ where: { id } });
 		},

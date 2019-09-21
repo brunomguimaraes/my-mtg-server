@@ -1,5 +1,10 @@
 const orderedProduct = (sequelize, DataTypes) => {
     const OrderedProduct = sequelize.define('orderedProduct', {
+        id: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV1,
+            primaryKey: true
+        },
         name: {
             type: DataTypes.STRING,
         },

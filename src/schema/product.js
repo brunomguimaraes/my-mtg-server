@@ -17,6 +17,11 @@ type Product {
   cardColor: Colors
 }
 
+input UpdateProductInput {
+  id: ID!
+  quantityInStock: Int
+}
+
 enum Colors {
   Blue
   Black
@@ -37,6 +42,7 @@ extend type Mutation {
 		description: String
     cardColor: Colors
   ): Product!
+  updateProduct(input: UpdateProductInput): Product
   deleteProduct(id: ID!): Boolean!
 }
 `;

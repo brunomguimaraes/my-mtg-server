@@ -14,7 +14,7 @@ type OrderedProduct {
   quantity: Int
 }
 
-type OrderedProductInput {
+input OrderedProductInput {
   orderId: ID
   name: String
   price: Float
@@ -23,11 +23,11 @@ type OrderedProductInput {
 
 extend type Mutation {
 	createOrderedProduct(
-  	orderId: ID
+    orderId: ID
     name: String
-  	price: Float
-  	quantity: Int
-  ): OrderedProductInput
+    price: Float
+    quantity: Int
+  ): OrderedProduct
   deleteOrderedProduct(id: ID!): Boolean!
 }
 `;

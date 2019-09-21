@@ -19,10 +19,14 @@ input CreateCartProductInput {
   shoppingCartId: ID
 }
 
+input UpdateCartProductInput {
+  id: ID!
+  quantityOnCart: Int
+}
+
 extend type Mutation {
-		createCartProduct(
-input: CreateCartProductInput
-  ): CartProduct
+	createCartProduct(input: CreateCartProductInput): CartProduct
+  updateCartProduct(input: UpdateCartProductInput): CartProduct
   deleteCartProduct(id: ID!): Boolean!
 }
 `;

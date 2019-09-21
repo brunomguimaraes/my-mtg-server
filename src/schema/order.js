@@ -8,26 +8,25 @@ export default gql`
 
 type Order {
   id: ID!
-	cartProducts: [CartProduct]
 	user: User
 	isPaid: Boolean
 	totalOrderValue: Float
-	productsOrdered: [OrderedProduct]
+	orderedProduct: [OrderedProduct]
 }
 
-type OrderInput {
-   	userId: ID
+type CreateOrderInput {
 		totalOrderValue: Float
 		isPaid: Boolean
+		userId: ID
 }
 
 extend type Mutation {
 	createOrder(
-  	userId: ID
 		totalOrderValue: Float
 		isPaid: Boolean
-		orderedProductIds: [ID]
-  ): OrderInput
+		userId: ID
+		orderedProduct: [OrderedProductInput]
+  ): Order
   deleteOrder(id: ID!): Boolean!
 }
 `;
