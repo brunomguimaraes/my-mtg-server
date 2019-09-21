@@ -14,7 +14,7 @@ type CartProduct {
 }
 
 input CreateCartProductInput {
-  id: ID
+  productId: ID
   quantityOnCart: Int
   shoppingCartId: ID
 }
