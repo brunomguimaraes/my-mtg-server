@@ -19,6 +19,7 @@ export default gql`
       cardNumber: Int!
       cvv: Int!
       isValid: Boolean!
+      userId: ID
     ): PaymentInfo!
     deleteCreditCard(id: ID!): Boolean!
   }

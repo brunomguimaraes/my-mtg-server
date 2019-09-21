@@ -23,5 +23,19 @@ export default {
 				},
 			});
 		},
+		order: async (user, args, { models }) => {
+			return await models.Order.findAll({
+				where: {
+					userId: user.id,
+				},
+			});
+		},
+		shoppingCart: async (user, args, { models }) => {
+			return await models.ShoppingCart.findOne({
+				where: {
+					userId: user.id,
+				},
+			});
+		},
 	},
 };

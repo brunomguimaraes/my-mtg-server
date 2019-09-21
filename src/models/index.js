@@ -10,7 +10,11 @@ const sequelize = new Sequelize(
 const models = {
 	User: sequelize.import('./user'),
 	PaymentInfo: sequelize.import('./payment'),
-	Product: sequelize.import('./product')
+	Product: sequelize.import('./product'),
+	CartProduct: sequelize.import('./cartProduct'),
+	ShoppingCart: sequelize.import('./shoppingCart'),
+	Order: sequelize.import('./order'),
+	OrderedProduct: sequelize.import('./orderedProduct'),
 };
 Object.keys(models).forEach(key => {
 	if ('associate' in models[key]) {

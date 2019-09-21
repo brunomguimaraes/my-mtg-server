@@ -2,6 +2,7 @@ import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
+import uuidv4 from 'uuid/v4';
 
 import schema from './schema';
 import resolvers from './resolvers';
@@ -15,8 +16,6 @@ const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
   formatError: error => {
-    // remove the internal sequelize error message
-    // leave only the important validation error
     const message = error.message
       .replace('SequelizeValidationError: ', '')
       .replace('Validation error: ', '');
@@ -27,13 +26,13 @@ const server = new ApolloServer({
   },
   context: async () => ({
     models,
-    me: await models.User.findByLogin('johndoe'),
+    me: await models.User.findByName('John Doe'),
   }),
 });
 
 server.applyMiddleware({ app, path: '/graphql' });
 
-const eraseDatabaseOnSync = true;
+const eraseDatabaseOnSync = false;
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
   if (eraseDatabaseOnSync) {
@@ -48,13 +47,12 @@ const createUsersWithCreditCardInfo = async () => {
   await models.User.create(
     {
       name: 'John Doe',
-      paymentInfos: [{
+      creditCardInfo: [{
         cardNumber: 291032901234,
         cvv: 123,
         isValid: true
       }, {
         cardNumber: 473892019999,
-        cvv: 321,
         isValid: false
       }]
     },

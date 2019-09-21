@@ -14,6 +14,22 @@ type Product {
   quantityInStock: Int 
   cardType: String
   description: String
+  cardColor: Colors
+}
+
+input UpdateProductInput {
+  id: ID!
+  quantityInStock: Int
+}
+
+enum Colors {
+  Blue
+  Black
+  Colorless
+  White
+  Green
+  Red
+  Gold
 }
 
 extend type Mutation {
@@ -24,7 +40,9 @@ extend type Mutation {
 		quantityInStock: Int 
 		cardType: String
 		description: String
+    cardColor: Colors
   ): Product!
+  updateProduct(input: UpdateProductInput): Product
   deleteProduct(id: ID!): Boolean!
 }
 `;
