@@ -1,12 +1,12 @@
-import { gql } from 'apollo-server-express';
+import { gql } from "apollo-server-express";
 
-import userSchema from './user';
-import paymentSchema from './payment';
-import productSchema from './product';
-import cartProductSchema from './cartProduct';
-import shoppingCartSchema from './shoppingCart';
-import orderSchema from './order';
-import orderProductSchema from './orderedProduct';
+import userSchema from "./user";
+import paymentSchema from "./payment";
+import productSchema from "./product";
+import cartProductSchema from "./cartProduct";
+import shoppingCartSchema from "./shoppingCart";
+import orderSchema from "./order";
+import orderProductSchema from "./orderedProduct";
 
 const linkSchema = gql`
   type Query {
@@ -20,4 +20,13 @@ const linkSchema = gql`
   }
 `;
 
-export default [linkSchema, userSchema, paymentSchema, productSchema, cartProductSchema, shoppingCartSchema, orderSchema, orderProductSchema];
+export default [
+  linkSchema,
+  userSchema,
+  paymentSchema,
+  productSchema,
+  cartProductSchema,
+  shoppingCartSchema,
+  orderSchema,
+  orderProductSchema,
+];
