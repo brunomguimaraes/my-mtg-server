@@ -1,7 +1,4 @@
 # My mtg server
+A full-fledged Apollo Server project with React and Express.
+Client side: https://github.com/brunomguimaraes/my-mtg-shop
 
-init db:
-psql mtg_shop_data
-
-\list to show all dbs
-\q to quit
