@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-express';
+import { gql } from "apollo-server-express";
 
 export default gql`
   extend type Query {
@@ -6,28 +6,28 @@ export default gql`
     orderedProduct(id: ID!): OrderedProduct!
   }
 
-type OrderedProduct {
-  id: ID!
-  name: String
-  order: Order
-  price: Float
-  quantity: Int
-}
+  type OrderedProduct {
+    id: ID!
+    name: String
+    order: Order
+    price: Float
+    quantity: Int
+  }
 
-input OrderedProductInput {
-  orderId: ID
-  name: String
-  price: Float
-  quantity: Int
-}
-
-extend type Mutation {
-	createOrderedProduct(
+  input OrderedProductInput {
     orderId: ID
     name: String
     price: Float
     quantity: Int
-  ): OrderedProduct
-  deleteOrderedProduct(id: ID!): Boolean!
-}
+  }
+
+  extend type Mutation {
+    createOrderedProduct(
+      orderId: ID
+      name: String
+      price: Float
+      quantity: Int
+    ): OrderedProduct
+    deleteOrderedProduct(id: ID!): Boolean!
+  }
 `;

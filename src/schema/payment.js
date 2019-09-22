@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-express';
+import { gql } from "apollo-server-express";
 
 export default gql`
   extend type Query {
@@ -9,12 +9,12 @@ export default gql`
   type PaymentInfo {
     id: ID!
     user: User!
-		cardNumber: Int!
-  	cvv: Int!
-  	isValid: Boolean!
+    cardNumber: Int!
+    cvv: Int!
+    isValid: Boolean!
   }
 
-   extend type Mutation {
+  extend type Mutation {
     createCreditCard(
       cardNumber: Int!
       cvv: Int!
@@ -24,4 +24,3 @@ export default gql`
     deleteCreditCard(id: ID!): Boolean!
   }
 `;
-

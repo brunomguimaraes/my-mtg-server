@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-express';
+import { gql } from "apollo-server-express";
 
 export default gql`
   extend type Query {
@@ -6,20 +6,18 @@ export default gql`
     shoppingCart(id: ID!): ShoppingCart!
   }
 
-type ShoppingCart {
-  id: ID!
-	cartProducts: [CartProduct]
-	user: User
-}
+  type ShoppingCart {
+    id: ID!
+    cartProducts: [CartProduct]
+    user: User
+  }
 
-type ShoppingCartInput {
-  userId: ID
-}
+  type ShoppingCartInput {
+    userId: ID
+  }
 
-extend type Mutation {
-	createShoppingCart(
-  	userId: ID
-  ): ShoppingCartInput
-  deleteShoppingCart(id: ID!): Boolean!
-}
+  extend type Mutation {
+    createShoppingCart(userId: ID): ShoppingCartInput
+    deleteShoppingCart(id: ID!): Boolean!
+  }
 `;
