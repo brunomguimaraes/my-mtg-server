@@ -5,5 +5,9 @@ Postgres was used as db and sequelize as ORM.
 
 Client side: https://github.com/brunomguimaraes/my-mtg-shop
 
-## To run: `npm start`
+## Scripts:
+
+After db was initialized:
+
+`npm start`
 
