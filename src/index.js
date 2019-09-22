@@ -2,13 +2,14 @@ import "dotenv/config";
 import cors from "cors";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
-import uuidv4 from "uuid/v4";
 
 import schema from "./schema";
 import resolvers from "./resolvers";
 import models, { sequelize } from "./models";
 
 const app = express();
+const port = process.env.PORT || 8000;
+const force = process.env.FORCE_SYNC === "false";
 
 app.use(cors());
 
@@ -32,14 +33,12 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app, path: "/graphql" });
 
-const eraseDatabaseOnSync = false;
-
-sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
-  if (eraseDatabaseOnSync) {
+sequelize.sync({ force }).then(async () => {
+  if (force) {
     createUsersWithCreditCardInfo();
   }
-  app.listen({ port: 8000 }, () => {
-    console.log("Apollo Server running");
+  app.listen({ port }, () => {
+    console.log(`Apollo Server running on port: ${port}`);
   });
 });
 
