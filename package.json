@@ -8,6 +8,10 @@
     "build": "babel src -d build",
     "serve": "node ./build/index.js"
   },
+  "engines": {
+    "node": "8.15.0",
+    "npm": "6.9.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
