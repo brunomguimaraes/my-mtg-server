@@ -29,6 +29,9 @@ const server = new ApolloServer({
     models,
     me: await models.User.findByName("John Doe"),
   }),
+  schema: augmentedSchema,
+  introspection: true, // enables introspection of the schema on production
+  playground: true, // enables the actual playground on production
 });
 
 server.applyMiddleware({ app, path: "/graphql" });
