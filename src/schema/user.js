@@ -14,4 +14,8 @@ export default gql`
     order: [Order]
     shoppingCart: ShoppingCart
   }
+
+  extend type Mutation {
+    createUser(name: String!): User!
+  }
 `;

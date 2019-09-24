@@ -14,6 +14,16 @@ export default {
     },
   },
 
+  Mutation: {
+    createUser: async (parent, args, { models }) => {
+      try {
+        const user = { ...args };
+        return await models.User.create(user);
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+  },
   User: {
     creditCardInfo: async (user, args, { models }) => {
       return await models.PaymentInfo.findAll({
