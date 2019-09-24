@@ -37,7 +37,7 @@ sequelize.sync({ force }).then(async () => {
   if (force) {
     createUsersWithCreditCardInfo();
   }
-  app.listen({ port }, () => {
+  app.listen(port, () => {
     console.log(`Apollo Server running on port: ${port}`);
   });
 });
