@@ -15,3 +15,4 @@ After db was initialized:
 
 Dataloaders are practically essential for a graphql server since it may reduce the amount of requests on db, that being said, i've already added this to my task list. The reason that i didn't implemented yet is due to time constraints but i understant that the code is not optimized yet.
 
+Live Playground: https://mtg-shop-server.herokuapp.com/graphql 
